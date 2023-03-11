@@ -1,0 +1,61 @@
+    1  cd project-ml-microservice-kubernetes/
+    2  bash resize.sh 100
+    3  clear
+    4  make setup
+    5  source ~/.devops/bin/activate
+    6  make install
+    7  make lint
+    8  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    9  sudo install minikube-linux-amd64 /usr/local/bin/minikube
+   10  curl -LO https://storage.googleapis.com/kubernetes-release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+   11  sudo chmod +x ./kubectl
+   12  sudo mv ./kubectl /usr/local/bin/kubectl
+   13  docker version
+   14  clear
+   15  make lint
+   16  cd project-ml-microservice-kubernetes/
+   17  make setup
+   18  source ~/.devops/bin/activate
+   19  bash make_prediction.sh 
+   20  bash run_docker.sh 
+   21  touch docker_out.txt
+   22  bash upload_docker.sh 
+   23  touch kubernetes_out.txt
+   24  minikube start
+   25  ls /usr/local/bin
+   26  minikube start
+   27  bash run_kubernetes.sh 
+   28  cat /usr/local/bin/kubectl
+   29  clear
+   30  curl -Ls "https://sbom.k8s.io/$(curl -Ls https://dl.k8s.io/release/latest.txt)/release"  | awk '/Package: registry.k8s.io\// {print $3}'
+   31  sudo chmod +x ./kubectl
+   32  ls
+   33  curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+   34  sudo chmod +x ./kubectl
+   35  sudo mv ./kubectl /usr/local/bin/kubectl
+   36  minikube start
+   37  bash run_kubernetes.sh 
+   38  bash make_prediction.sh 
+   39  cd project-ml-microservice-kubernetes/
+   40  make setup
+   41  source ~/.devops/bin/activate
+   42  mkdir .circleci
+   43  cd .circleci/
+   44  touch config.yml
+   45  cd ..
+   46  git init
+   47  cd project-ml-microservice-kubernetes/
+   48  make setup
+   49  source ~/.devops/bin/activate
+   50  clear
+   51  git status
+   52  git add .
+   53  git commit -m 'Project 4 Upload'
+   54  git branch -M main
+   55  git remote add origin https://github.com/habtij/udacity_project4.git
+   56  git remote
+   57  git push -u origin main
+   58  git add .
+   59  git commit -m 'Updated Status  Badge'
+   60  git push origin main
+   61  history > cmd.txt
